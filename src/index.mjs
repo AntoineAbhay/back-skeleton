@@ -8,18 +8,18 @@ import objectsRouter from './routes/objects.mjs'
 const app = express()
 app.use(helmet()) // For security headers
 app.use(bodyParser.json())
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   logger.info('API-call', { method: req.method, path: req.path })
   next()
 })
 
 app.use('/objects', objectsRouter)
 
-app.get('/status', (req, res) => {
+app.get('/status', (_req, res) => {
   res.status(200).json({ status: 'healthy' })
 })
 
-app.post('/error', (req, res, next) => {
+app.post('/error', (req, _res, next) => {
   try {
     throw Error(req.body.message)
   } catch (e) {
@@ -27,7 +27,12 @@ app.post('/error', (req, res, next) => {
   }
 })
 
-const errorHandler = (err, req, res, next) => {
+app.use((req, res) => {
+  logger.warn('Not-found', { method: req.method, path: req.path, ip: req.ip })
+  res.status(404).json({ success: false, reason: 'Not Found' })
+})
+
+const errorHandler = (err, _req, res, next) => {
   logger.error(err.message)
   if (res.headersSent) {
     return next(err)
