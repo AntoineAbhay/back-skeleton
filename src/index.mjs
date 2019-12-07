@@ -2,14 +2,14 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
 
+import logger from './utils/logger.mjs'
 import objectsRouter from './routes/objects.mjs'
 
 const app = express()
 app.use(helmet()) // For security headers
 app.use(bodyParser.json())
-
-app.all('/', (req, res, next) => {
-  console.log('Accessing the API..')
+app.use((req, res, next) => {
+  logger.info('API-call', { method: req.method, path: req.path })
   next()
 })
 
@@ -28,7 +28,7 @@ app.post('/error', (req, res, next) => {
 })
 
 const errorHandler = (err, req, res, next) => {
-  console.error('error:', err.message)
+  logger.error(err.message)
   if (res.headersSent) {
     return next(err)
   }
