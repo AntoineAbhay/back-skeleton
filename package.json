@@ -1,0 +1,35 @@
+{
+  "name": "back-skeleton",
+  "version": "0.0.1",
+  "description": "This is a skeleton for a backend server written in nodeJS.",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node --experimental-modules src/index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntoineAbhay/back-skeleton.git"
+  },
+  "keywords": [
+    "back",
+    "nodejs",
+    "server"
+  ],
+  "author": "Antoine ABHAY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AntoineAbhay/back-skeleton/issues"
+  },
+  "homepage": "https://github.com/AntoineAbhay/back-skeleton#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
