@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node --experimental-modules src/index.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier-check": "pretty-quick --check",
+    "prettier-fix": "pretty-quick"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,13 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "husky": "^3.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
