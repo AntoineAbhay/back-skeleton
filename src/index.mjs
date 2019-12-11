@@ -5,6 +5,9 @@ import helmet from 'helmet'
 import logger from './utils/logger.mjs'
 import objectsRouter from './routes/objects.mjs'
 
+import config from './config'
+const PORT = config.get('port')
+
 const app = express()
 app.use(helmet()) // For security headers
 app.use(bodyParser.json())
@@ -42,6 +45,6 @@ const errorHandler = (err, _req, res, next) => {
 
 app.use(errorHandler)
 
-app.listen(3000, () => {
-  console.log('Back-skeleton app listening on port 3000!')
+app.listen(PORT, () => {
+  logger.info('Back-skeleton app started', { port: PORT })
 })
