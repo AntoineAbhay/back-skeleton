@@ -7,9 +7,9 @@ router.get('/', (req, res) => {
   res.send('Objects home page')
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const id = req.params.id
-  const object = ObjectsController.getById(id)
+  const object = await ObjectsController.getById(id)
   res.status(200).json(object)
 })
 

@@ -15,6 +15,18 @@ var config = convict({
     env: 'PORT',
     arg: 'port',
   },
+  db: {
+    name: {
+      doc: 'The database name.',
+      format: String,
+      default: 'skeleton',
+    },
+    url: {
+      doc: 'The database url.',
+      format: '*',
+      default: 'mongodb://localhost:27017',
+    },
+  },
 })
 
 // Load environment dependent configuration
